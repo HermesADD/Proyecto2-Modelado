@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import modelo.jugador.*;
-import modelo.jugador.dificultad.Pensante;
+import modelo.jugador.dificultad.*;
 import vista.Observador;
 
 /**
@@ -41,12 +41,17 @@ public class Tablero1vPC implements Tablero {
 
     /**
      * Constructor del tablero 1 vs 1
+     * @param nivel - indica el nivel del juego
      */
-    public Tablero1vPC(){
+    public Tablero1vPC(int nivel){
         this.casilla = new String[3][3];
         this.observadores = new ArrayList<>();
-        this.jugadorX = new JugadorX(this); 
-        this.jugadorOPC = new JugadorPC(this, new Pensante(this));
+        this.jugadorX = new JugadorX(this);
+        if(nivel == 1){
+            this.jugadorOPC = new JugadorPC(this, new Pensante(this));
+        }else{
+            this.jugadorOPC = new JugadorPC(this, new Aleatorio(this));
+        } 
         this.jugadorActual = jugadorX;
         reiniciarTablero();
     

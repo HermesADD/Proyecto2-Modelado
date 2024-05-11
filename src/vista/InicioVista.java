@@ -15,8 +15,6 @@ public class InicioVista {
      * Constructor InicioVista
      */
     public InicioVista(){
-        bienvenida();
-        modoDeJuego();
     }
 
     /**
@@ -24,6 +22,12 @@ public class InicioVista {
      */
     public void bienvenida(){
         Colors.println("Bienvenido al juego tres en raya!!!!", Colors.HIGH_INTENSITY);
+    }
+
+    public void iniciarJuego(){
+        Colors.println("Selecciona una opcion"
+        + "\n1. Empezar juego"
+        + "\n2. Terminar juego", Colors.HIGH_INTENSITY);
     }
 
     /**
@@ -40,7 +44,11 @@ public class InicioVista {
      */
     public void dificultad(){
         Colors.println("Selecciona la dificultad contra la que te quieres enfrentar"
-        + "1. RANDOM: La computadora seleccionara una casilla al azar"
-        + "2. IA: La computadora pensara mejor sus movimientos!", Colors.CYAN);
+        + "\n1. RANDOM: La computadora seleccionara una casilla al azar"
+        + "\n2. IA: La computadora pensara mejor sus movimientos!", Colors.CYAN);
+    }
+
+    public void opcionIncorrecta(){
+        Colors.println("Opcion incorrecta!", Colors.RED);
     }
 }

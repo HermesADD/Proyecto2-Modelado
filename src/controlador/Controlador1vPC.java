@@ -20,9 +20,10 @@ public class Controlador1vPC {
 
     /**
      * Constructor del controlador 1 vs PC
+     * @param nivel - indica el nivel del juego
      */
-    public Controlador1vPC(){
-        this.modelo = new Tablero1vPC();
+    public Controlador1vPC(int nivel){
+        this.modelo = new Tablero1vPC(nivel);
         this.vista = new TableroVistaPC(modelo);
     }
 

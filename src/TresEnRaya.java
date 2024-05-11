@@ -4,9 +4,14 @@ public class TresEnRaya {
         //Controlador1v1 controlador = new Controlador1v1();
 
         //controlador.iniciarJuego();
+        // System.out.println("Nivel Pensante");
+        // Controlador1vPC control = new Controlador1vPC(1);
 
-        Controlador1vPC control = new Controlador1vPC();
-
-        control.iniciarJuego();
+        // control.iniciarJuego();
+        // System.out.println("Nivel aleatorio");
+        // Controlador1vPC c2 = new Controlador1vPC(0);
+        // c2.iniciarJuego();
+        ControladorInicio inicio = new ControladorInicio();
+        inicio.inicioJuego();
     }
 }
