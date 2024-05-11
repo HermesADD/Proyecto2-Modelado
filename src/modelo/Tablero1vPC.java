@@ -42,6 +42,8 @@ public class Tablero1vPC implements Tablero {
     /**
      * Constructor del tablero 1 vs 1
      * @param nivel - indica el nivel del juego
+     *              - 1 si es pensante
+     *              - otro caso entonces es aleatorio
      */
     public Tablero1vPC(int nivel){
         this.casilla = new String[3][3];

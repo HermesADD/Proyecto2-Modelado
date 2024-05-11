@@ -1,22 +1,41 @@
 package controlador;
 
-import vista.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import vista.*;
 
-import colors.Colors;
-
+/**
+ * Clase controlador inicio, donde se conecta el menu inicial con los demas controladores
+ * 
+ * @author Hermes
+ * @author Steve
+ * @author Emiliano
+ */
 public class ControladorInicio {
 
+    /**
+     * Controlador 1v1
+     */
     private final Controlador1v1 onevsone;
 
+    /**
+     * Controlador 1vPC en nivel pensante
+     */
     private final Controlador1vPC onevPCpensante;
 
+    /**
+     * Controlador 1vPC en nivel aleatorio
+     */
     private final Controlador1vPC onevPCaleatorio;
 
+    /**
+     * Vista de inicio, menu principal
+     */
     private final InicioVista inicioVista;
 
-
+    /**
+     * Constructor de ControladorInicio
+     */
     public ControladorInicio(){
         this.onevsone = new Controlador1v1();
         this.onevPCpensante = new Controlador1vPC(1);
@@ -24,6 +43,9 @@ public class ControladorInicio {
         inicioVista = new InicioVista();
     }
 
+    /**
+     * Metodo que inicia el juego tres en raya
+     */
     public void inicioJuego(){
         inicioVista.bienvenida();
         boolean fin = true;
@@ -69,6 +91,9 @@ public class ControladorInicio {
         }
     }
 
+    /**
+     * Metodo privado que sirve para seleccionar una opcion 
+     */
     private int seleccionaOpcion(){
         Scanner sc1 = new Scanner(System.in);
         int opcion;

@@ -3,6 +3,14 @@ package vista;
 import colors.Colors;
 import modelo.Tablero;
 
+/**
+ * Clase tablero vista pc que sirve para manejar las vistas del tablero u otras opciones
+ * Implementa la interface observador del patron Observer
+ * 
+ * @author Hermes
+ * @author Steve 
+ * @author Emiliano
+ */
 public class TableroVistaPC implements Observador{
     /**
      * Referencia tablero para la vista
@@ -10,7 +18,7 @@ public class TableroVistaPC implements Observador{
     protected Tablero modelo;
 
     /**
-     * Constructor del Tablero Vista
+     * Constructor del Tablero VistaPC
      * @param modelo - tablero que mostrara la vista
      */
     public TableroVistaPC(Tablero modelo){

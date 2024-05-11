@@ -24,6 +24,9 @@ public class InicioVista {
         Colors.println("Bienvenido al juego tres en raya!!!!", Colors.HIGH_INTENSITY);
     }
 
+    /**
+     * Metodo que da las opciones de inicio del juego
+     */
     public void iniciarJuego(){
         Colors.println("Selecciona una opcion"
         + "\n1. Empezar juego"
@@ -48,6 +51,9 @@ public class InicioVista {
         + "\n2. IA: La computadora pensara mejor sus movimientos!", Colors.CYAN);
     }
 
+    /**
+     * Metodo que indica si la opcion es incorrecta 
+     */
     public void opcionIncorrecta(){
         Colors.println("Opcion incorrecta!", Colors.RED);
     }
