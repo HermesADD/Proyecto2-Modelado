@@ -51,47 +51,51 @@ public class Controlador1v1 {
 
     /**
      * Metodo privado que sirve para solicitar movimiento
-     * @return
+     * @return Arreglo de int con fila y columna donde se hara el movimiento
      */
     private int[] solicitarMovimiento(){
         int[] fc = new int[2];
-    int fila = -1;
-    int columna = -1;
-    vista.solicitarMovimiento();
-    Scanner sc = new Scanner(System.in);
-    while(true){
-        try{
-            vista.solicitarMovimientoFila();
-            fila = sc.nextInt();
-            if(fila < 0 || fila > 2){
+        int fila = -1;
+        int columna = -1;
+        vista.solicitarMovimiento();
+        Scanner sc = new Scanner(System.in);
+        while(true){
+            try{
+                vista.solicitarMovimientoFila();
+                fila = sc.nextInt();
+                if(fila < 0 || fila > 2){
+                    vista.movimientoIncorrecto();
+                    continue;
+                }
+                vista.solicitarMovimientoColumna();
+                columna = sc.nextInt();
+                if(columna < 0 || columna > 2){
+                    vista.movimientoIncorrecto();
+                    continue;
+                }
+                if (!modelo.getValorCasilla(fila, columna).equals("[ " + fila + "," + columna +   " ]")) {
+                    vista.movimientoIncorrecto();
+                    continue;
+                }
+                fc[0] = fila;
+                fc[1] = columna;
+                break;
+            } catch(NoSuchElementException | NumberFormatException e){
                 vista.movimientoIncorrecto();
-                continue;
+            }finally {
+                // Consumir la nueva línea del buffer del Scanner
+                sc.nextLine();
             }
-            vista.solicitarMovimientoColumna();
-            columna = sc.nextInt();
-            if(columna < 0 || columna > 2){
-                vista.movimientoIncorrecto();
-                continue;
-            }
-            if (!modelo.getValorCasilla(fila, columna).equals("[ " + fila + "," + columna +   " ]")) {
-                vista.movimientoIncorrecto();
-                continue;
-            }
-            fc[0] = fila;
-            fc[1] = columna;
-            break;
-        } catch(NoSuchElementException | NumberFormatException e){
-            vista.movimientoIncorrecto();
-        }finally {
-            // Consumir la nueva línea del buffer del Scanner
-            sc.nextLine();
         }
-    }
-    return fc; 
+        return fc; 
     }
 
     
-
+    /**
+     * Indica si el juego termino
+     * @return true - si termino el juego
+     *         false- no termino el juego
+     */
     public boolean juegoTerminado(){
         return modelo.hayGanador() || modelo.hayEmpate();
     }

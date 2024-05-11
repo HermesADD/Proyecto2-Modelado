@@ -102,6 +102,7 @@ public class Tablero1v1 implements Tablero{
         return false;
     }
 
+    @Override
     public boolean hayEmpate(){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
