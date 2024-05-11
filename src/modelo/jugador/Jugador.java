@@ -20,7 +20,7 @@ public abstract class Jugador {
     /**
      * Simbolo que representa al jugador
      */
-    private String simbolo;
+    private final String simbolo;
 
     /**
      * Constructor del jugador

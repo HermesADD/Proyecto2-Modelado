@@ -2,16 +2,17 @@ package modelo;
 
 import java.util.ArrayList;
 import modelo.jugador.*;
-import vista.*;
+import modelo.jugador.dificultad.Pensante;
+import vista.Observador;
 
 /**
- * Clase Tablero1v1 que es el tablero donde se juega 1 contra 1 "X" vs "O"
+ * Clase Tablero1vPC que es el tablero donde se juega 1 contra PC "X" vs "O"
  * 
  * @author Hermes
  * @author Steve
  * @author Emiliano
  */
-public class Tablero1v1 implements Tablero{
+public class Tablero1vPC implements Tablero {
 
     /**
      * Casillas del tablero
@@ -24,12 +25,12 @@ public class Tablero1v1 implements Tablero{
     private Jugador jugadorActual;
 
     /**
-     * Jugador "O" del juego
+     * JugadorPC "O" del juego
      */
-    private final JugadorO jugadorO;
+    private final JugadorPC jugadorOPC;
 
     /**
-     * Jugador "Y" del juego
+     * Jugador "X" del juego
      */
     private final JugadorX jugadorX;
 
@@ -41,13 +42,14 @@ public class Tablero1v1 implements Tablero{
     /**
      * Constructor del tablero 1 vs 1
      */
-    public Tablero1v1(){
+    public Tablero1vPC(){
         this.casilla = new String[3][3];
-        this.jugadorO = new JugadorO(this);
-        this.jugadorX = new JugadorX(this);
-        this.jugadorActual = jugadorO;
-        observadores = new ArrayList<>();
+        this.observadores = new ArrayList<>();
+        this.jugadorX = new JugadorX(this); 
+        this.jugadorOPC = new JugadorPC(this, new Pensante(this));
+        this.jugadorActual = jugadorX;
         reiniciarTablero();
+    
     }
 
     @Override
@@ -60,16 +62,16 @@ public class Tablero1v1 implements Tablero{
     }
 
     @Override
-    public void setCasilla( int fila, int columna, String simbolo){
+    public void setCasilla(int fila, int columna, String simbolo) {
         casilla[fila][columna] = simbolo;
     }
 
     @Override
     public void cambiarJugadorActual() {
-        if(jugadorActual.getSimbolo().equals("[ O ]")){
+        if(jugadorActual.getSimbolo().equals("[ X ]")){
+            jugadorActual = this.jugadorOPC;
+        }else if(jugadorActual.getSimbolo().equals("[ O ]")){
             jugadorActual = this.jugadorX;
-        }else if(jugadorActual.getSimbolo().equals("[ X ]")){
-            jugadorActual = this.jugadorO;
         }
     }
 
@@ -84,7 +86,7 @@ public class Tablero1v1 implements Tablero{
     }
 
     @Override
-    public boolean hayGanador(){
+    public boolean hayGanador() {
         for (int i = 0; i < 3; i++) {
             if (casilla[i][0].equals(casilla[i][1]) && casilla[i][1].equals(casilla[i][2])) {
                 return true;
@@ -102,7 +104,7 @@ public class Tablero1v1 implements Tablero{
     }
 
     @Override
-    public boolean hayEmpate(){
+    public boolean hayEmpate() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (casilla[i][j].equals("[ " + i +","+ j + " ]")) {
@@ -129,5 +131,4 @@ public class Tablero1v1 implements Tablero{
             observador.actualizar();
         }
     }
-    
 }

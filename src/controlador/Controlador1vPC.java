@@ -4,33 +4,26 @@ import controlador.command.Command;
 import controlador.command.MovimientoCommand;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import modelo.Tablero1v1;
-import vista.TableroVista;
+import modelo.Tablero1vPC;
+import vista.TableroVistaPC;
 
-/** Controlador del tablero 1v1 y su vista
- * 
- * @author Hermes
- * @author Steve
- * @author Emiliano
- */
-public class Controlador1v1 {
-
+public class Controlador1vPC {
     /**
      * Tablero 1v1
      */
-    private final Tablero1v1 modelo;
+    private final Tablero1vPC modelo;
 
     /**
      * Vista del tablero en este caso 1v1
      */
-    private final  TableroVista vista;
+    private final  TableroVistaPC vista;
 
     /**
-     * Constructor del controlador 1 vs 1
+     * Constructor del controlador 1 vs PC
      */
-    public Controlador1v1(){
-        this.modelo = new Tablero1v1();
-        this.vista = new TableroVista(modelo);
+    public Controlador1vPC(){
+        this.modelo = new Tablero1vPC();
+        this.vista = new TableroVistaPC(modelo);
     }
 
     /**
@@ -39,9 +32,15 @@ public class Controlador1v1 {
     public void iniciarJuego(){
         vista.mostrarTablero();
         while (!juegoTerminado()) {
-            int[] movimiento = solicitarMovimiento();
-            Command mov = new MovimientoCommand(movimiento[0], movimiento[1], modelo);
-            mov.execute();
+            if(modelo.getJugadorActual().getSimbolo().equals("[ O ]")){
+                vista.turnoPC();
+                Command movPC = new MovimientoCommand(0, 0,modelo);
+                movPC.execute();
+            }else{
+                int[] movimiento = solicitarMovimiento();
+                Command mov = new MovimientoCommand(movimiento[0], movimiento[1], modelo);
+                mov.execute();
+            }
             if (modelo.hayGanador()) {
                 vista.ganador();
             } else if (modelo.hayEmpate()) {
@@ -103,4 +102,5 @@ public class Controlador1v1 {
     public boolean juegoTerminado(){
         return modelo.hayGanador() || modelo.hayEmpate();
     }
+    
 }
