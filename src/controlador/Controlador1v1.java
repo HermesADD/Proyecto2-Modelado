@@ -101,6 +101,11 @@ public class Controlador1v1 {
      *         false- no termino el juego
      */
     public boolean juegoTerminado(){
-        return modelo.hayGanador() || modelo.hayEmpate();
+        if(modelo.hayGanador() || modelo.hayEmpate()){
+            modelo.reiniciarTablero();
+            return true;
+        }else{
+            return  false;
+        }
     }
 }
